@@ -149,7 +149,7 @@ class DAG(object):
         """ Returns a list of all nodes in the graph with no dependencies. """
         if graph is None:
             graph = self.graph
-        dependent_nodes = set(tuple(node) for dependents in graph.items() for node in dependents)
+        dependent_nodes = set(node for dependents in iter(graph.values() )for node in dependents)
         return [node for node in graph.keys() if node not in dependent_nodes]
 
     def validate(self, graph=None):
